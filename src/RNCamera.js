@@ -594,7 +594,10 @@ export default class Camera extends React.Component<PropsType, StateType> {
 
   _onCameraReady = () => {
     if (this.props.onCameraReady) {
-      this.props.onCameraReady();
+      this.props.onCameraReady({
+        cameraStatus: this.getStatus(),
+        camera: this,
+      });
     }
   };
 
@@ -602,6 +605,7 @@ export default class Camera extends React.Component<PropsType, StateType> {
     if (this.props.onStatusChange) {
       this.props.onStatusChange({
         cameraStatus: this.getStatus(),
+        camera: this,
         recordAudioPermissionStatus: this.state.recordAudioPermissionStatus,
       });
     }
